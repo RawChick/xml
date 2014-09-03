@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!--
+ DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ 
+ Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
+ 
+ The contents of this file are subject to the terms of either the GNU
+ General Public License Version 2 only ("GPL") or the Common Development
+ and Distribution License("CDDL") (collectively, the "License").  You
+ may not use this file except in compliance with the License. You can obtain
+ a copy of the License at https://glassfish.dev.java.net/public/CDDL+GPL.html
+ or glassfish/bootstrap/legal/LICENSE.txt.  See the License for the specific
+ language governing permissions and limitations under the License.
+ 
+ When distributing the software, include this License Header Notice in each
+ file and include the License file at glassfish/bootstrap/legal/LICENSE.txt.
+ Sun designates this particular file as subject to the "Classpath" exception
+ as provided by Sun in the GPL Version 2 section of the License file that
+ accompanied this code.  If applicable, add the following below the License
+ Header, with the fields enclosed by brackets [] replaced by your own
+ identifying information: "Portions Copyrighted [year]
+ [name of copyright owner]"
+ 
+ Contributor(s):
+ 
+ If you wish your version of this file to be governed by only the CDDL or
+ only the GPL Version 2, indicate your decision by adding "[Contributor]
+ elects to include this software in this distribution under the [CDDL or GPL
+ Version 2] license."  If you don't indicate a single choice of license, a
+ recipient has the option to distribute your version of this file under
+ either the CDDL, the GPL Version 2 or to extend the choice of license to
+ its licensees as provided above.  However, if you add GPL Version 2 code
+ and therefore, elected the GPL Version 2 license, then the option applies
+ only if the new code is made subject to such option by the copyright
+ holder.
+-->
+
+<!--
+    @(#)java.xml	1.1 99/02/05
+
+    This shows some of the ways to encode Java source code in XML text.
+    
+    Note that another solution is needed for use inside attribute values,
+    where these three basic approaches are not syntactically recognized.
+    One approach that has been used successfully is to use some quoting
+    mechanism for Java expressions, recognized by the same processor which
+    recognizes and uses other Java code, such as
+	<element-name attribute1="value is `someVariableName`"/>
+    or
+	<element-name attribute1="value is {someVariableName}"/>
+-->
+
+<!DOCTYPE root [
+<!ELEMENT root ANY>
+<!ELEMENT Java (#PCDATA)>
+<!ATTLIST Java xml:space (default|preserve) #FIXED "preserve">
+]>
+
+<root>
+
+<!-- FIRST WAY -->
+    <?Java
+	// Simplest way:  just use a PI.  This won't provide any
+	// sort of coupling between structures in Java and in XML;
+	// validity constraints can't control where PIs may appear,
+	// nesting can't be enforced, and so forth.  (Also, leading
+	// whitespace will be removed.)
+
+	String	type = request.getParameter ("TYPE");
+
+	if ("BUY".equals (type) && enableBuy)
+	    doBuy ();
+	else if (value < threshold)
+	    defaultAction ();
+    ?>
+
+<!-- SECOND WAY -->
+    <Java><![CDATA[
+	// Using CDATA -- which is just an alternative way to delimit
+	// text, with '<' and '&' normal characters rather than the
+	// beginning of syntactic structures (but see next comment)
+
+	// Advantage of this over the PI approach:  through use
+	// of a DTD, you can control where text appears in valid
+	// documents.
+
+	String	type = request.getParameter ("TYPE");
+
+	if ("BUY".equals (type) && enableBuy)
+	    doBuy ();
+	else if (value < threshold)
+	    defaultAction ();
+	
+	// Note that the three character pattern terminating a CDATA
+	// section could appear (infrequently) in Java code.  Where that
+	// happens, it must be escaped by splitting it into two separate
+	// text (or CDATA) sections, perhaps as "]]]><![CDATA[]>".  It is
+	// often natural just to add some whitespace:  "]] >"
+    ]]> </Java>
+
+<!-- THIRD WAY -->
+    <Java>
+	// Using normal text, you must change code to include
+	// strings such as '&lt;' and '&amp;'.  This is otherwise
+	// equivalent to the CDATA approach above.
+
+	// Advantage of this over the PI approach:  through use
+	// of a DTD, you can control where text appears in valid
+	// documents.
+
+	String	type = request.getParameter ("TYPE");
+
+	if ("BUY".equals (type) &amp;&amp; enableBuy)
+	    doBuy ();
+	else if (value &lt; threshold)
+	    defaultAction ();
+    </Java>
+
+<!--
+    Note that using comments to encapsulate Java code is NOT treated
+    as an option here.  Processing instructions were designed to hold
+    information given to document processors, and are reported by all
+    conformant XML parsers.  Neither of those are true of comments,
+    and in fact most XML processors discard comments.
+-->
+
+</root>

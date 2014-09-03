@@ -1,0 +1,278 @@
+-------------------------------------------------------------------------
+ 			
+		Java API for XML Processing (JAXP) 1.4 Samples
+		
+-------------------------------------------------------------------------
+	
+Contents :
+=========
+	* How to compile and run samples.
+	* A short description about each sample.
+
+
+
+How to Compile and Run the Samples
+==================================
+	
+A ant script(build.xml) has been provided to simplify the task of compiling
+and running the samples. The default target in the ant script is the "run"
+target.  The run target compiles all the samples into the "build" directory
+and runs them.  
+
+From the samples directory run the following command:
+
+	$ ant run.
+
+The build.xml file has targets for each JAXP sample. The target name is the 
+sample file name without ".java" extension. To run individual samples without
+executing the run target, use the compile target to compile all samples:
+        $ ant compile 
+
+        and then run individual sample such as:
+	$ ant StAXCursorParse  
+
+For a list of individual samples, run the usage target to get help information:
+        $ ant usage
+
+It is also possible to run samples on the command line without using Ant. To compile
+an individual sample such as CursorParse.java under stax/cursor directory, from the 
+samples directory, create a build directory and then issue the following command:
+
+	$ javac -d ./build -Djava.endorsed.dirs=../lib stax/cursor/CursorParse.java
+
+Note the use of endorsed directory to guarrante the current Jaxp build is used instead
+of that in the JVM.
+
+Now to run the sample, use the following command:
+	$ java -cp ./build -Djava.endorsed.dirs=../lib stax.cursor.CursorParse stax/data/BookCatalogue.xml
+
+
+If a sample is executed with the incorrect arguments, the usage of that sample 
+is displayed.
+
+A Short Description of Each Sample  
+==================================
+
+1) XPath
+
+    XPath demonstrates a simple use of the XPath 1.0 APIs in JAXP 1.3.
+    XPath takes an XML file and an XPath Expression as input.
+
+        ant XPath -Dfile=<XML file> -Dexpression=<XPath Expression>
+
+    The sample default values are:
+
+        ant XPath -Dfile=data/HelloWorldService.wsdl -Dexpression=//soap:body
+
+    The XPath Expression is evaluated against the XML file.
+    The resulting NodeList is displayed.
+
+    XPath Expressions can be compiled, cached and reused.
+
+    To run directly from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib XPathDemo <XML file> <XPath Expression>
+        $ java -Djava.endorsed.dirs=../../lib XPathDemo ../data/HelloWorldService.wsdl //soap:body
+
+			
+2) XIncludeParser 
+
+    The XIncludeParser sample demonstrates how to enable the XInclude support that 
+    the JAXP 1.3 RI provides. It creates an XInclude-aware DOM parser from the 
+    DocumentBuilderFactory by setting setXIncludeAware to true. The document object 
+    obtained from the parser is written to an output file using DOM Level 3 Load and 
+    Save APIs. 
+
+    XIncludeParser takes two arguments as input: an input file that needs to be 
+    parsed and an output file to which the result will be written out to.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib XInclude.XIncludeParser
+              ../data/document_xinclude.xml xinclude_output.xml
+
+        $ java -Djava.endorsed.dirs=../../lib XInclude.XIncludeParser
+              ../data/document_xpointer.xml xpointer_output.xml
+
+
+3) DOMSerializer
+			
+    DOMSerializer uses JAXP APIs to parse an XML file and create a W3C DOM Document 
+    object. It then uses W3C DOM Level 3 Load and Save APIs to serialize the 
+    document object into a file.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib dom.DOMSerializer ../data/foo.xml
+              dom_serializer_output.xml
+
+4) SchemaValidator
+
+    SchemaValidator shows how to parse a W3C XML Schema and use it to validate an 
+    XML instance, using JAXP 1.3 Validation APIs. SchemaValidator accepts a W3C XML 
+    Schema file and an XML instance as arguments. The grammar object created as a 
+    result of parsing XML Schema can be cached and used to validate other XML 
+    instances refering to the same schema.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib validation.SchemaValidator
+              ../data/personal.xsd ../data/personal-schema.xml
+		
+5) SecureParser
+			
+    SecureParser provided in JAXP 1.3 shows how to use the secure processing
+    feature which prevents denial of service attacks.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib SecureProcessing.SecureParser
+              -enableSecureProcessing=false ../data/personal-schema.xml
+					
+6) DOMEcho
+
+    DOMEcho demonstrates the use of W3C DOM Level 2 interfaces and JAXP
+    APIs. DOMEcho shows how to do the following:
+
+    i)    Use JAXP APIs to parse an XML file and create a W3c DOM Document object.
+    ii)   Validate an XML instance against a grammar object (W3C schema/DTD).
+    iii)  Print the contents of the DOM tree.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib dom.DOMEcho -xsd  ../data/personal-schema.xml
+        $ java -Djava.endorsed.dirs=../../lib dom.DOMEcho ../data/personal-schema.xml
+	
+
+7) NewDatatypes
+
+    This class shows how to use the new Datatype APIs introduced in JSR 206.
+    This sample shows some (out of many) of the cool new things which are
+    possible with the new javax.xml.datatype APIs. Check the source
+    code of the sample (NewDatatypes.java).
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib Datatype.NewDatatypes					
+
+
+8) DOMLS
+
+    Demonstrate the use of DOMLevel 3 LSParser and LSParseFilter interfaces. The
+    DOMLS sample uses the implementation of LSParser to parse a XML file and then
+    writes to an outputfile using the implementation of LSSerializer. DOMLS filters
+    out all TEXT Nodes.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../lib dom.DOMLS ../data/foo.xml output/dom_ls_output.xml
+
+9) StAXCursorParse
+
+    CursorParse sample is used to demonstrate the use of STAX cursor approach. In 
+    this approach application instructs the parser to read the next event in the XML 
+    input stream by calling next().
+
+    Note that next() just returns an integer constant corresponding to 
+    underlying event where the parser is positioned. Application needs to call 
+    relevant function to get more information related to the underlying event.
+
+    You can imagine this approach as a virtual cursor moving across the XML input 
+    stream. There are various accessor methods which can be called when that virtual 
+    cursor is at particular event.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib stax.cursor.CursorParse ../stax/data/BookCatalogue.xml
+
+10) StAXCursorApproachEventObject
+
+    StAX has two approach to parse XML, that is:
+        Cursor : XMLStreamReader
+        Event :  XMLEventReader
+
+    XMLStreamReader returns the integer constant corresponding to particular event and 
+    application need to call relevant function to get information about that event. 
+    This is the most efficient way to parse XML.
+
+    XMLEventReader returns immutable and persistent event objects. All the information 
+    related to particular event is encapsulated in the returned XMLEvent object. In this 
+    approach user needs not worry about how to get relevant information corresponding to 
+    a particular event, as in the case of XMLStreamReader. This makes it easy for the user 
+    to work with the event approach. 
+
+    The disadvantage of event approach is the extra overhead of creating every event objects which
+    consumes both time and memory. However, It is possible to get event information as an XMLEvent<code/> 
+    object even when using cursor approach ie. XMLStreamReader using XMLEventAllocator.
+
+    This class shows how application can get information as an XMLEvent object when using cursor 
+    approach. 
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib stax.cursor2event.CursorApproachEventObject ../stax/data/BookCatalogue.xml
+
+11) StAXEventParse
+    EventParse sample is used to demonstrate the use of Event api's.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib stax.event.EventParse ../stax/data/BookCatalogue.xml
+
+12) StAXNamespaceFilter
+    MyNamespaceFilter sample is used to demonstrates the use of STAX stream filter api's. 
+    This filter accepts only StartElement events that belong to a particular namespace and 
+    filters out rest of the events.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib stax.filter.MyNamespaceFilter "http://accept" 
+                ../stax/data/filter.MyNamespaceFilter.xml
+
+13) StAXStreamFilter
+    MyStreamFilter sample is used to demonstrates the use of STAX stream filter api's. 
+    This filter accepts only StartElement and EndElement events and filters out rest of
+    the events.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib stax.filter.MyStreamFilter -f ../stax/data/BookCatalogue.xml
+ 
+14) StAXEventProducerConsumer
+    Stax has writing APIs. XMLEventWriter extends from XMLEventConsumer
+    interface. So XMLEventWriter acts as a consumer which can consume events. 
+    Event producer XMLEventReader and consumer XMLEventWriter mechanism
+    makes it possible to read XML from one stream sequentially and simultaneously write to other stream. 
+ 
+    This makes reading and writing very fast. This sample shows how StAX producer/consumer mechanism can be 
+    used to read and write simultaneously. This sample also shows that stream can be modified 
+    or new events can be added dynamically and then written to different stream using XMLEventWriter 
+    APIs.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib stax.readnwrite.EventProducerConsumer ../stax/data/BookCatalogue.xml
+ 
+
+15) StAXStreamReader
+    StreamReader sample is used to demonstrate the use of the stream reader api. 
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib stax.stream.MyStreamReader ../stax/data/stream.MyStreamReader.xml
+ 
+
+16) StAXCursorWriter
+    CursorWriter sample is used to demonstrate the use of STAX Writer api's.
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib stax.writer.CursorWriter -f output/writer.CursorWriter.xml
+
+
+17) StAXHelloWorld     
+    HelloWorld sample is used to demonstrate the use of STAX Writer api's. 
+
+    How to run from the build directory:
+
+        $ java -Djava.endorsed.dirs=../../lib stax.writer.HelloWorld -f output/writer.HelloWorld.xml

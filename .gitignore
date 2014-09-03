@@ -1,0 +1,27 @@
+# Dit is een voorbeeld .gitignore bestand. 
+# Files in dit bestand worden niet in de GIT repository geplaatst.
+
+# Bestanden met de volgende extensie negeren
+*.class
+*.log
+.classpath
+.project
+
+# but do track lib.a, even though you're ignoring .a files above
+#!lib.a
+
+# only ignore the root .metadata file, not subdir/.metadata
+/.metadata
+
+# ignore all files in these directories
+bin/
+build/
+lib/
+.settings/
+.gradle/
+
+# ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
+
+# ignore all .txt files in the doc/ directory
+doc/**/*.txt

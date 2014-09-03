@@ -1,0 +1,54 @@
+
+JavaTM API for XML Processing
+README
+
+Specification Version: 1.6
+Reference Implementation (RI) Version: 1.6.0
+
+The Java API for XML Processing (JAXP) enables applications to parse,
+transform, validate and query XML documents using an API that is
+independent of any particular XML processor implementation. JAXP
+provides a pluggability layer to enable vendors to provide their own
+implementations without introducing dependencies in application code.
+Using this software, application and tool developers can build
+fully-functional XML-enabled Java applications for e-commerce,
+application integration, and web publishing.
+
+The Java Platform, Standard Edition version 8 include JAXP 1.6. JAXP 1.6
+is a maintenance release of JAXP 1.5 with support for the JDK 8 effort: 
+JEP 162 - Prepare for Modularization. JAXP 1.6 FCS was released on
+March 3, 2014 with a code base the same as that in JDK 8. JAXP 1.6.0, 
+including changes/bug fixes as listed in the change log, is now in
+Java SE 8.  For information about the current development activities,
+please refer to the JAXP project on Java.net (http://jaxp.java.net/).
+
+Release Notes:
+
+    JAXP 1.6.0 Release Notes (docs/ReleaseNotes.html)
+
+This bundle installs the following files and components:
+
+    * jaxp-api.src.zip -- JAXP API source files.
+    * jaxp-ri.src.zip -- JAXP RI source files.
+    * jaxp-api.jar -- JAXP API jar file under the lib directory.
+    * jaxp-ri.jar -- JAXP RI jar file under the lib directory.
+    * Samples -- samples demonstrating some use cases of JAXP. 
+      Please refer to samples/README for more details.
+
+Licenses:
+
+    * This software is licensed under Common Development and
+      Distribution License.Refer to CDDLv1.1.txt.
+    * Additional copyright notices and license terms applicable to
+      portions of the software are set forth in the 3rd Party License
+      README, as well as JSR173 License.
+
+
+Feedback: 
+
+    JAXP 1.6  will be the final standalone release.  All future revisions to the JAXP API 
+    will be part of the Java SE specification, starting with Java SE 9.
+    Future JAXP development will be done solely within the OpenJDK community. Please join 
+    us in the OpenJDK community, use mailing aliases such as discuss for general discussion, 
+    [release]-dev for release-specific and core-libs-dev for JAXP specific questions. 
+    Report bugs at https://bugs.openjdk.java.net for the xml component.

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Library 
+	xmlns:tns="http://www.example.org/Library-extended" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.example.org/Library Library-extended.xsd">
+
+	<Member membershipNumber="1004">
+		<Firstname>Robin</Firstname>
+		<Lastname>Schellius</Lastname>
+		<Address addressKind="Primary Address">
+			<Street>Hierdestraat</Street>
+			<Housenumber>5</Housenumber>
+			<City>Breda</City>
+		</Address>
+		<Address addressKind="Postal Address">
+			<Street>Verderop</Street>
+			<Housenumber>12</Housenumber>
+			<City>Ulicoten</City>
+		</Address>
+		<TelephoneNumbers>
+			<PhoneNumber phoneType="landline">076-1968201</PhoneNumber>
+			<PhoneNumber phoneType="mobile">06-19682014</PhoneNumber>
+		</TelephoneNumbers>
+		<EmailAddress>r.schellius@avans.nl</EmailAddress>
+		<Fine>2.75</Fine>
+		<Loans>
+			<Loan copyId="2" lendingPeriod="3">
+				<ISBN>857865544</ISBN>
+				<LendingDate>2014-06-28</LendingDate>
+			</Loan>
+			<Loan copyId="1" lendingPeriod="2">
+				<ISBN>834586544</ISBN>
+				<LendingDate>2014-06-28</LendingDate>
+			</Loan>
+		</Loans>
+	</Member>
+
+	<Item itemNumber="1000001">
+		<Category>Action and Adventure</Category>
+		<Book>
+			<ISBN>857865544</ISBN>
+			<title>The life of Pi</title>
+			<Author>Yann Martel</Author>
+			<Format>Paperback</Format>
+			<Publisher>Mariner Books</Publisher>
+			<PublicationDate>2003-05-01</PublicationDate>
+			<Language>English</Language>
+		</Book>
+	</Item>
+	<Item itemNumber="1000002">
+		<Category>Literature</Category>
+		<Book>
+			<ISBN>857812365</ISBN>
+			<title>The Old Man and the Sea</title>
+			<Author>Ernest Hemingway</Author>
+			<Format>Hardcover</Format>
+			<Publisher>Charles Scribner's Sons</Publisher>
+			<PublicationDate>1952</PublicationDate>
+			<Language>English</Language>
+		</Book>
+	</Item>
+	<Item itemNumber="1000003">
+		<Category>Action and Adventure</Category>
+		<Movie>
+			<EAN>8711875926358</EAN>
+			<Format>DVD</Format>
+			<Title>The Sixth Sense</Title>
+			<Director>M. Night Shyamalan</Director>
+			<YearOfPublication>1999</YearOfPublication>
+			<Actors>
+				<Actor>Bruce Willis</Actor>
+				<Actor>Haley Joel Osmond</Actor>
+				<Actor>Tony Colette</Actor>
+			</Actors>
+		</Movie>
+	</Item>
+	
+	<Author>
+		<Name>Yann Martel</Name>
+		<CountryOfBirth>Spain</CountryOfBirth>
+		<BirthDate>1963</BirthDate>
+	</Author>
+	<Author>
+		<Name>Ernest Hemingway</Name>
+		<CountryOfBirth>United States</CountryOfBirth>
+		<BirthDate>1899</BirthDate>
+	</Author>
+	
+	<Actor>
+		<ActorName>Bruce Willis</ActorName>
+		<DateOfBirth>1955-03-19</DateOfBirth>
+	</Actor>
+	
+</tns:Library>
