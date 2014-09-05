@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectteam>
+	<projectname>Rule the Galaxy</projectname>
+	<member>
+		<name>Emperor Palpatine</name>
+		<function>lead</function>
+		<email>palpatine@empire.gxy</email>
+	</member>
+	<member>
+		<name>Lord Darth Vader</name>
+		<function>Jedi-Killer</function>
+		<email>vader@empire.gxy</email>
+	</member>
+	<member>
+		<name>Grand Moff Tarkin</name>
+		<function>Planet-Killer</function>
+		<email>tarkin@empire.gxy</email>
+	</member>
+	<member>
+		<name>Admiral Motti</name>
+		<function>Death Star operations</function>
+		<email>motti@empire.gxy</email>
+	</member>
+</projectteam>
