@@ -1,0 +1,12 @@
+
+apply plugin: "java"
+
+repositories {
+	mavenCentral()
+}
+
+
+// http://search.maven.org/remotecontent?filepath=org/apache/xmlgraphics/fop/1.1/fop-1.1.pom
+dependencies {
+	compile group: 'org.apache.xmlgraphics', name: 'fop', version: '1.1'
+}
