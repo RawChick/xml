@@ -1,0 +1,13 @@
+
+apply plugin: "java"
+apply plugin: "eclipse"
+
+repositories {
+	mavenCentral()
+}
+
+// Dependencies and artifacts are grouped by configurations.
+configurations { 
+	compile
+}
+

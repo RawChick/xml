@@ -1,51 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:library xmlns:tns="http://www.example.org/library" 
+<?xml-stylesheet type="text/xsl" href="library.xsl"?>
+
+<lib:library xmlns:lib="http://www.avans.nl/ivh5/worked-example" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://www.example.org/library library.xsd">
+	xsi:schemaLocation="http://www.avans.nl/ivh5/worked-example library.xsd">
 
-	<member membershipNumber="1004">
-		<firstname>Robin</firstname>
-		<lastname>Schellius</lastname>
-		<street>Hierdestraat</street>
-		<housenumber>5</housenumber>
-		<city>Breda</city>
-		<phoneNumber>076-19682014</phoneNumber>
-		<emailaddress>r.schellius@avans.nl</emailaddress>
-		<fine>2.75</fine>
-		<loans>
-			<loan copyid="2" lendingperiod="3">
-				<isbn>857865544</isbn>
-			</loan>
-			<loan copyid="1" lendingperiod="2">
-				<isbn>834586544</isbn>
-			</loan>
-		</loans>
-	</member>
-	<member membershipNumber="1005">
-		<firstname>Jan-Willem</firstname>
-		<lastname>Van Dalen</lastname>
-		<street>Bergenseweg</street>
-		<housenumber>28</housenumber>
-		<city>Roosendaal</city>
-		<phoneNumber>076-19722014</phoneNumber>
-		<emailaddress>jwvdalen@gmail.com</emailaddress>
-		<fine>6.45</fine>
-		<loans>
-			<loan copyid="2" lendingperiod="1">
-				<isbn>834586544</isbn>
-			</loan>
-		</loans>
-	</member>
+	<members>
+		<member membershipNumber="1004">
+			<firstname>Robin</firstname>
+			<lastname>Schellius</lastname>
+			<street>Hierdestraat</street>
+			<housenumber>5</housenumber>
+			<city>Breda</city>
+			<phoneNumber>076-19682014</phoneNumber>
+			<emailaddress>r.schellius@avans.nl</emailaddress>
+			<fine>2.75</fine>
+			<loans>
+				<loan copyid="2" lendingperiod="3">
+					<isbn>857865544</isbn>
+				</loan>
+				<loan copyid="1" lendingperiod="2">
+					<isbn>834586544</isbn>
+				</loan>
+			</loans>
+		</member>
+		<member membershipNumber="1005">
+			<firstname>Jan-Willem</firstname>
+			<lastname>Van Dalen</lastname>
+			<street>Bergenseweg</street>
+			<housenumber>28</housenumber>
+			<city>Roosendaal</city>
+			<phoneNumber>076-19722014</phoneNumber>
+			<emailaddress>jwvdalen@gmail.com</emailaddress>
+			<fine>6.45</fine>
+			<loans>
+				<loan copyid="2" lendingperiod="1">
+					<isbn>834586544</isbn>
+				</loan>
+			</loans>
+		</member>
+		<member membershipNumber="1010">
+			<firstname>Robert</firstname>
+			<lastname>Verdullemen</lastname>
+			<street>Overkant</street>
+			<housenumber>5</housenumber>
+			<city>Hierde</city>
+			<phoneNumber>046-19682014</phoneNumber>
+			<emailaddress>rdj.verdullemen@avans.nl</emailaddress>
+			<fine>3.75</fine>
+			<loans>
+				<loan copyid="2" lendingperiod="3">
+					<isbn>857865244</isbn>
+				</loan>
+				<loan copyid="1" lendingperiod="2">
+					<isbn>834286544</isbn>
+				</loan>
+			</loans>
+		</member>
+		<member membershipNumber="1011">
+			<firstname>Marieke</firstname>
+			<lastname>Van Zwieten</lastname>
+			<street>Bredaseweg</street>
+			<housenumber>12</housenumber>
+			<city>Ulicoten</city>
+			<phoneNumber>076-19682014</phoneNumber>
+			<emailaddress>mrj.vanzwieten@breda.nl</emailaddress>
+			<fine>0.0</fine>
+			<loans>
+				<loan copyid="2" lendingperiod="3">
+					<isbn>857865244</isbn>
+				</loan>
+			</loans>
+		</member>
+	</members>
 
-	<book>
-		<isbn>857865544</isbn>
-		<title>The life of Pi</title>
-		<author>Yann Martel</author>
-	</book>
-	<book>
-		<isbn>834586544</isbn>
-		<title>The old man and the sea</title>
-		<author>Ernest Hemingway</author>
-	</book>
+	<items>
+		<book>
+			<isbn>857865544</isbn>
+			<title>The life of Pi</title>
+			<author>Yann Martel</author>
+		</book>
+		<book>
+			<isbn>834586544</isbn>
+			<title>The old man and the sea</title>
+			<author>Ernest Hemingway</author>
+		</book>
+	</items>
 	
-</tns:library>
+</lib:library>

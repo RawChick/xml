@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:Library 
-	xmlns:tns="http://www.example.org/Library-extended" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://www.example.org/Library Library-extended.xsd">
+<?xml-stylesheet type="text/xsl" href="library.xsl"?>
 
-	<Member membershipNumber="1004">
+<lib:Library xmlns:lib="http://www.avans.nl/ivh5/worked-example/extended" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.avans.nl/ivh5/worked-example/extended library-extended.xsd">
+
+	<Member MembershipNumber="1004">
 		<Firstname>Robin</Firstname>
 		<Lastname>Schellius</Lastname>
 		<Address addressKind="Primary Address">
@@ -18,18 +19,22 @@
 			<City>Ulicoten</City>
 		</Address>
 		<TelephoneNumbers>
-			<PhoneNumber phoneType="landline">076-1968201</PhoneNumber>
-			<PhoneNumber phoneType="mobile">06-19682014</PhoneNumber>
+			<TelephoneNumber NumberType="Home">
+				<Number>076-1968201</Number>
+			</TelephoneNumber>
+			<TelephoneNumber NumberType="Mobile">
+				<Number>06-19682014</Number>
+			</TelephoneNumber>
 		</TelephoneNumbers>
 		<EmailAddress>r.schellius@avans.nl</EmailAddress>
 		<Fine>2.75</Fine>
 		<Loans>
-			<Loan copyId="2" lendingPeriod="3">
-				<ISBN>857865544</ISBN>
+			<Loan CopyID="2" LendingPeriod="3">
+				<ItemNumber>857865544</ItemNumber>
 				<LendingDate>2014-06-28</LendingDate>
 			</Loan>
-			<Loan copyId="1" lendingPeriod="2">
-				<ISBN>834586544</ISBN>
+			<Loan CopyID="1" LendingPeriod="2">
+				<ItemNumber>834586544</ItemNumber>
 				<LendingDate>2014-06-28</LendingDate>
 			</Loan>
 		</Loans>
@@ -39,40 +44,40 @@
 		<Category>Action and Adventure</Category>
 		<Book>
 			<ISBN>857865544</ISBN>
-			<title>The life of Pi</title>
+			<Title>The life of Pi</Title>
 			<Author>Yann Martel</Author>
 			<Format>Paperback</Format>
 			<Publisher>Mariner Books</Publisher>
-			<PublicationDate>2003-05-01</PublicationDate>
 			<Language>English</Language>
 		</Book>
+		<PublicationDate>2003-05-01</PublicationDate>
 	</Item>
 	<Item itemNumber="1000002">
 		<Category>Literature</Category>
 		<Book>
 			<ISBN>857812365</ISBN>
-			<title>The Old Man and the Sea</title>
+			<Title>The Old Man and the Sea</Title>
 			<Author>Ernest Hemingway</Author>
 			<Format>Hardcover</Format>
 			<Publisher>Charles Scribner's Sons</Publisher>
-			<PublicationDate>1952</PublicationDate>
 			<Language>English</Language>
 		</Book>
+		<PublicationDate>1952-01-01</PublicationDate>
 	</Item>
 	<Item itemNumber="1000003">
-		<Category>Action and Adventure</Category>
+		<Category>Thriller</Category>
 		<Movie>
-			<EAN>8711875926358</EAN>
+			<EAN>8711875926</EAN>
 			<Format>DVD</Format>
 			<Title>The Sixth Sense</Title>
 			<Director>M. Night Shyamalan</Director>
-			<YearOfPublication>1999</YearOfPublication>
 			<Actors>
-				<Actor>Bruce Willis</Actor>
-				<Actor>Haley Joel Osmond</Actor>
-				<Actor>Tony Colette</Actor>
+				<ActorName>Bruce Willis</ActorName>
+				<ActorName>Haley Joel Osmond</ActorName>
+				<ActorName>Tony Colette</ActorName>
 			</Actors>
 		</Movie>
+		<PublicationDate>1999-01-01</PublicationDate>
 	</Item>
 	
 	<Author>
@@ -87,8 +92,9 @@
 	</Author>
 	
 	<Actor>
-		<ActorName>Bruce Willis</ActorName>
-		<DateOfBirth>1955-03-19</DateOfBirth>
+		<Name>Bruce Willis</Name>
+		<CountryOfBirth>United States</CountryOfBirth>
+		<BirthDate>1955-03-19</BirthDate>
 	</Actor>
 	
-</tns:Library>
+</lib:Library>

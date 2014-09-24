@@ -1,12 +1,29 @@
 
 apply plugin: "java"
+apply plugin: "eclipse"
 
 repositories {
 	mavenCentral()
 }
 
+// Dependencies and artifacts are grouped by configurations.
+configurations { 
+	compile
+}
 
 // http://search.maven.org/remotecontent?filepath=org/apache/xmlgraphics/fop/1.1/fop-1.1.pom
 dependencies {
-	compile group: 'org.apache.xmlgraphics', name: 'fop', version: '1.1'
+	compile(
+        [group: 'org.apache.xmlgraphics', name: 'fop', version: '1.1', transitive: true],
+        [group: 'org.apache.avalon', name: 'avalon-framework', version: '1', transitive: true],
+        [group: 'org.apache.avalon.framework', name: 'avalon-framework-api', version: '4.3.1', transitive: true],
+        [group: 'org.apache.avalon.framework', name: 'avalon-framework-impl', version: '4.3.1', transitive: true],
+    )
 }
+
+task deploylocal(type: Copy) {
+	from (configurations.runtime)
+	from (configurations.compile)
+	into 'libs'
+}
+build.finalizedBy deploylocal

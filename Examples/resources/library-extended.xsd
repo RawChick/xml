@@ -1,18 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" 
-	targetNamespace="http://www.example.org/library-extended"
-	xmlns:tns="http://www.example.org/library-extended">
+	targetNamespace="http://www.avans.nl/ivh5/worked-example/extended"
+	xmlns:lib="http://www.avans.nl/ivh5/worked-example/extended">
 
-	<element name="library">
+	<element name="Library">
 		<complexType>
 			<sequence>
-				<element name="Member" type="tns:MemberType" maxOccurs="unbounded"
+				<element name="Member" type="lib:MemberType" maxOccurs="unbounded"
 					minOccurs="1"></element>
-				<element name="Item" type="tns:ItemType" maxOccurs="unbounded"
+				<element name="Item" type="lib:ItemType" maxOccurs="unbounded"
 					minOccurs="1"></element>
-				<element name="Author" type="tns:AuthorType" maxOccurs="unbounded"
+				<element name="Author" type="lib:AuthorType" maxOccurs="unbounded"
 					minOccurs="1"></element>
-				<element name="Actor" type="tns:ActorType" maxOccurs="unbounded"
+				<element name="Actor" type="lib:ActorType" maxOccurs="unbounded"
 					minOccurs="1"></element>
 			</sequence>
 		</complexType>
@@ -22,18 +21,20 @@
 		<sequence>
 			<element name="Firstname" type="string" minOccurs="1"></element>
 			<element name="Lastname" type="string" minOccurs="1" maxOccurs="1"></element>
-			<element name="Address" type="tns:AddressType" minOccurs="1"
-				maxOccurs="3">
+			<element name="Address" type="lib:AddressType" minOccurs="1" maxOccurs="3"></element>
+			<element name="TelephoneNumbers" minOccurs="1" maxOccurs="1">
+				<complexType>
+					<sequence>
+						<element name="TelephoneNumber" type="lib:TelephoneNumberType" minOccurs="1" maxOccurs="3"></element>
+					</sequence>
+				</complexType>
 			</element>
-			<element name="Telephone" type="tns:TelephoneType" minOccurs="1"
-				maxOccurs="2">
-			</element>
-			<element name="Emailaddress" type="string"></element>
+			<element name="EmailAddress" type="string"></element>
 			<element name="Fine" type="double"></element>
 			<element name="Loans">
 				<complexType>
 					<sequence>
-						<element name="Loan" type="tns:LoanType" maxOccurs="5" minOccurs="0"></element>
+						<element name="Loan" type="lib:LoanType" maxOccurs="5" minOccurs="0"></element>
 					</sequence>
 				</complexType>
 			</element>
@@ -42,12 +43,12 @@
 	</complexType>
 
 	<complexType name="AddressType">
-		<attribute name="addressKind" type="addressKindType"></attribute>
 		<sequence>
 			<element name="Street" type="string"></element>
 			<element name="Housenumber" type="positiveInteger"></element>
 			<element name="City" type="string"></element>
 		</sequence>
+		<attribute name="addressKind" type="lib:addressKindType"></attribute>
 	</complexType>
 	
 	<simpleType name="addressKindType">
@@ -58,44 +59,73 @@
 		</restriction>
 	</simpleType>
 
-
 	<complexType name="ItemType">
+		<sequence>
+			<element name="Category" type="lib:ItemCategoryType" minOccurs="1"></element>
+			<choice>
+				<annotation>
+					<documentation>Choose the correct item type.</documentation>
+				</annotation>
+				<element name="Book" type="lib:BookType"></element>
+				<element name="Movie" type="lib:MovieType"></element>
+			</choice>
+			<element name="PublicationDate" type="date"	minOccurs="0"></element>
+		</sequence>
 		<attribute name="itemNumber" type="nonNegativeInteger"></attribute>
-		<element name="Category" type="tns:ItemCategoryType" minOccurs="1"></element>
-		<choice>
-			<element name="Book" type="tns:BookType"></element>
-			<element name="Movie" type="tns:MovieType"></element>
-			<annotation>
-				<documentation>Life-time member</documentation>
-			</annotation>
-		</choice>
 	</complexType>
 
 	<simpleType name="ItemCategoryType">
 		<restriction base="string">
 			<enumeration value="Thriller"></enumeration>
 			<enumeration value="Literature"></enumeration>
-			<enumeration value="Adventure and Action"></enumeration>
+			<enumeration value="Action and Adventure"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="TelephoneNumberType">
+		<sequence>
+			<element name="Number" minOccurs="1" maxOccurs="1"></element>
+		</sequence>
+		<attribute name="NumberType" type="lib:TypeOfPhone"></attribute>
+	</complexType>
+	
+	<simpleType name="TypeOfPhone">
+		<restriction base="string">
+			<enumeration value="Home"></enumeration>
+			<enumeration value="Mobile"></enumeration>
+			<enumeration value="Work"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="FormatType">
+		<restriction base="string">
+			<enumeration value="Hardcover"></enumeration>
+			<enumeration value="Paperback"></enumeration>
+			<enumeration value="DVD"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="LanguageType">
+		<restriction base="string">
+			<enumeration value="Dutch"></enumeration>
+			<enumeration value="English"></enumeration>
 		</restriction>
 	</simpleType>
 
 	<complexType name="BookType">
 		<sequence>
-			<element name="ISBN" type="tns:ISBNType" minOccurs="1" maxOccurs="1"></element>
+			<element name="ISBN" type="lib:ISBNType" minOccurs="1" maxOccurs="1"></element>
 			<element name="Title" type="string" minOccurs="1" maxOccurs="2"></element>
 			<element name="Author" type="string" minOccurs="1" maxOccurs="unbounded"></element>
-			<element name="Format" type="tns:FormatType" minOccurs="1" maxOccurs="1"></element>
-			<element name="Publisher" type="tns:PublisherType"
-				minOccurs="0"></element>
-			<element name=" PublicationDate " type="date"
-				minOccurs="0"></element>
-			<element name="language" type="tns:languageType" minOccurs="0"></element>
+			<element name="Format" type="lib:FormatType" minOccurs="1" maxOccurs="1"></element>
+			<element name="Publisher" type="string" minOccurs="0"></element>
+			<element name="Language" type="lib:LanguageType" minOccurs="0"></element>
 		</sequence>
 	</complexType>
 
 	<complexType name="MovieType">
 		<sequence>
-			<element name="EAN" type="string" minOccurs="1" maxOccurs="1">
+			<element name="EAN" minOccurs="1" maxOccurs="1">
 				<simpleType>
 					<restriction base="string">
 						<minLength value="8"/>
@@ -103,15 +133,31 @@
 					</restriction>
 				</simpleType>
 			</element>
-			<element name="Title" type="string"></element>
-			<element name="Author" type="string"></element>
+			<element name="Format" type="lib:FormatType" minOccurs="1" maxOccurs="1"></element>
+			<element name="Title" type="string" minOccurs="1" maxOccurs="1"></element>
+			<element name="Director" type="string" minOccurs="1" maxOccurs="5"></element>
+			<element name="Actors" type="lib:ActorsType" minOccurs="1" maxOccurs="1"></element>			
+		</sequence>
+	</complexType>
+
+	<complexType name="ActorsType">
+		<sequence>
+			<element name="ActorName" type="string"  minOccurs="1" maxOccurs="unbounded"></element>
 		</sequence>
 	</complexType>
 
 	<complexType name="AuthorType">
 		<sequence>
 			<element name="Name" type="string"></element>
-			<element name="CountryOfBirthe" type="string"></element>
+			<element name="CountryOfBirth" type="string"></element>
+			<element name="BirthDate" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="ActorType">
+		<sequence>
+			<element name="Name" type="string"></element>
+			<element name="CountryOfBirth" type="string"></element>
 			<element name="BirthDate" type="string"></element>
 		</sequence>
 	</complexType>
@@ -119,6 +165,7 @@
 	<complexType name="LoanType">
 		<sequence>
 			<element name="ItemNumber" type="nonNegativeInteger" maxOccurs="1" minOccurs="1"></element>
+			<element name="LendingDate" type="date" maxOccurs="1" minOccurs="1"></element>
 		</sequence>
 		<attribute name="CopyID" type="positiveInteger"></attribute>
 		<attribute name="LendingPeriod" type="positiveInteger"></attribute>
@@ -126,7 +173,7 @@
 
 	<simpleType name="ISBNType">
 	    <restriction base="integer">
-	      	<pattern value="[0-9][0-9][0-9][0-9][0-9]"/>
+	      	<pattern value="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
 	    </restriction>
 	</simpleType>
 

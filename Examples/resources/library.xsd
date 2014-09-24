@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema 
-xmlns="http://www.w3.org/2001/XMLSchema" 
-targetNamespace="http://www.example.org/library"
-xmlns:tns="http://www.example.org/library">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.avans.nl/ivh5/worked-example"
+	xmlns:lib="http://www.avans.nl/ivh5/worked-example">
 
     <element name="library">
-    	<complexType>
-    		<sequence>
-		        <element name="member" type="tns:MemberType" maxOccurs="unbounded" minOccurs="1"></element>
-    			<element name="book" type="tns:BookType" maxOccurs="unbounded" minOccurs="1"></element>
-    		</sequence>
-    	</complexType>
+		<complexType>
+           <sequence>
+				<element name="members">
+					<complexType>
+			            <sequence>
+				    		<element name="member" type="lib:MemberType" maxOccurs="unbounded" minOccurs="0"></element>
+			            </sequence>
+					</complexType>
+				</element>
+				<element name="items">
+					<complexType>
+			            <sequence>
+				    		<element name="book" type="lib:BookType" maxOccurs="unbounded" minOccurs="0"></element>
+			            </sequence>
+					</complexType>
+				</element>
+            </sequence>
+		</complexType>
     </element>
 
     <complexType name="BookType">
     	<sequence>
-    		<element name="isbn" type="tns:ISBNType"></element>
+    		<element name="isbn" type="lib:ISBNType"></element>
     		<element name="title" type="string"></element>
     		<element name="author" type="string"></element>
     	</sequence>
@@ -34,7 +45,7 @@ xmlns:tns="http://www.example.org/library">
 	        <element name="loans">
 	          <complexType>
 	            <sequence>
-		    		<element name="loan" type="tns:LoanType" maxOccurs="unbounded" minOccurs="0"></element>
+		    		<element name="loan" type="lib:LoanType" maxOccurs="unbounded" minOccurs="0"></element>
 	            </sequence>
 	          </complexType>
 	        </element>
@@ -44,7 +55,7 @@ xmlns:tns="http://www.example.org/library">
     
     <complexType name="LoanType">
     	<sequence>
-    		<element name="isbn" type="tns:ISBNType"  maxOccurs="1"  minOccurs="1"></element>
+    		<element name="isbn" type="lib:ISBNType"  maxOccurs="1"  minOccurs="1"></element>
     	</sequence>
     	<attribute name="copyid" type="positiveInteger"></attribute>
     	<attribute name="lendingperiod" type="positiveInteger"></attribute>

@@ -135,12 +135,11 @@ public class DomInIVH5 {
 	 */
 	public static void main(String[] args) throws Exception {
 
-		String xmlFile = "C:\\dev\\xampp\\htdocs\\classes\\resources\\data\\library.xml";
-		String schemaFile = "C:\\dev\\xampp\\htdocs\\classes\\resources\\data\\library.xsd";
+		String xmlFile = "resources/library.xml";
+		String schemaFile = "resources/library.xsd";
 
 		// Print out the DOM tree
-		OutputStreamWriter outWriter = new OutputStreamWriter(System.out,
-				outputEncoding);
+		OutputStreamWriter outWriter = new OutputStreamWriter(System.out, outputEncoding);
 		DomInIVH5 dom = new DomInIVH5(new PrintWriter(outWriter, true));
 
 		// Get the xml file into the DOM document
@@ -150,8 +149,7 @@ public class DomInIVH5 {
 		} else {
 			
 			// Add a new element to the DOM
-			String[] elementToAdd = new String[] { "Marieke", "Smits",
-					"Middenweg", "4", "Breda" };
+			String[] elementToAdd = new String[] { "Marieke", "Smits", "Middenweg", "4", "Breda" };
 			dom.addMember(elementToAdd, document);
 
 			// Transform DOM to output in console
@@ -159,8 +157,8 @@ public class DomInIVH5 {
 			dom.transform(document, sr);
 
 			// Transform DOM to output to file
-			sr = new StreamResult(new File(xmlFile));
-			dom.transform(document, sr);
+			StreamResult sr2 = new StreamResult(new File("resources/output.xml"));
+			dom.transform(document, sr2);
 		}
 
 	}
