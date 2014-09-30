@@ -15,7 +15,7 @@ import de.vogella.xml.jaxb.model.Bookstore;
 
 public class BookMain {
 
-  private static final String BOOKSTORE_XML = "./bookstore-jaxb.xml";
+  private static final String BOOKSTORE_XML = "./resources/bookstore-jaxb.xml";
 
   public static void main(String[] args) throws JAXBException, IOException {
 
